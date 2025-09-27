@@ -1,0 +1,166 @@
+C:\project
+
+20.196.104.183
+
+http://20.196.104.183:5000
+
+alias 'python'='python3'
+
+
+:set nu
+
+Ubuntu 파이썬 설치
+--------------------------------------------------------
+sudo apt update
+
+sudo apt install python3
+sudo apt install python3-pip
+
+# 파이썬 가상환경을 새로 생성
+python -m venv venv
+
+# 이미 만들어진 가상환경을 활성화
+source venv/bin/activate
+
+
+pip install -r requirements.txt
+pip uninstall -r requirements.txt -y
+
+
+(sudo apt install python3-venv)
+(python -m venv venv)
+(source venv/bin/activate)
+--------------------------------------------------------
+
+웹 크롤링을 위한 크롬 브라우저 패키지 설치
+--------------------------------------------------------
+sudo apt-get update
+
+sudo apt-get install -y firefox
+
+
+
+
+sudo apt-get update && sudo apt-get install -y wget unzip chromium-browser firefox
+
+pip install webdriver-manager selenium
+
+pip install playwright flask-async flask-cors python-dotenv langchain
+
+playwright install-deps
+
+pip install playwright
+
+pip install "flask[async]" asgiref
+
+pip install yfinance pandas flask flask-cors python-dotenv langchain
+--------------------------------------------------------
+
+
+
+파이썬 앱을 개발하려고 합니다. (파일 경로/이름/확장자 : /project/app.py)
+
+ - Input : 미국 주식 티커명 입력
+ - Output : 아래 4가지 웹사이트 API 또는 크롤링을 통해, Input 입력받은 종목에 대한 종합적인 분석을 제시해주는 AI Agent (RAG 기반) 
+ - RAG 기반 소스데이터 : 아래 3가지 정보를, 아래 웹사이트 API 에서 확인
+
+------------------------------------------------------------------------------------------------------
+(1) 핀비즈 (티커명 변수 기반 홈페이지 주소) --> 해당 티커 종목의 실시간 P/E 정보 확인
+  - https://finviz.com/quote.ashx?t=PLTR
+  - https://finviz.com/quote.ashx?t=CRM
+  - https://finviz.com/quote.ashx?t=RXRX
+
+(2) 네이버페이 (티커명 변수 기반 홈페이지 주소) --> 
+  - 손익계산서 (티커명 변수 기반 손익계산서 정보 확인) --> 매출액, 영업이익, 순이익 추세 확인 (그래프) 
+       - https://m.stock.naver.com/worldstock/stock/PLTR.O/finance/income/annual
+       - https://m.stock.naver.com/worldstock/stock/CRM.O/finance/income/annual
+       - https://m.stock.naver.com/worldstock/stock/RXRX.O/finance/income/annual
+
+  - 현금흐름표 (티커명 변수 기반 현금흐름표 정보 확인) --> 영업활동현금흐름 추세 확인 (그래프)
+       - https://m.stock.naver.com/worldstock/stock/PLTR.O/finance/cash/annual
+       - https://m.stock.naver.com/worldstock/stock/CRM.O/finance/cash/annual
+       - https://m.stock.naver.com/worldstock/stock/RXRX.O/finance/cash/annual
+
+  - 대차대조표 (티커명 변수 기반 대차대조표 정보 확인) --> 부채/자본 비율 확인
+       - https://m.stock.naver.com/worldstock/stock/PLTR.O/finance/balance/annual
+       - https://m.stock.naver.com/worldstock/stock/CRM.O/finance/balance/annual
+       - https://m.stock.naver.com/worldstock/stock/RXRX.O/finance/balance/annual
+
+(3) 웨일즈위스덤 (티커명 변수 기반 홈페이지 주소) -->  Vanguard, BlackRock, State Street 3대 기관투자자의 매수/매도 동향 확인
+  - https://whalewisdom.com/stock/pltr 
+  - https://whalewisdom.com/stock/crm 
+  - https://whalewisdom.com/stock/rxrx 
+------------------------------------------------------------------------------------------------------
+
+참고로 
+
+
+/project/.env  파일은 아래와 같이 준비해놓았고
+-------------------------------------------------
+PORT=5000
+OPENAI_API_TYPE="azure"
+OPENAI_API_MODEL="gpt-4.1"
+OPENAI_TEMPERATURE=0.5
+AZURE_OPENAI_VERSION="2025-01-01-preview"
+AZURE_OPENAI_ENDPOINT="https://jungk-m9kkcc3e-eastus2.cognitiveservices.azure.com/"
+AZURE_OPENAI_KEY="xxxxxxxxxxxxx"
+AZURE_DEPLOYMENT_ID="gpt-4.1"
+AZURE_SEARCH_SERVICE_ENDPOINT="https://jk-ai-search.search.windows.net"
+AZURE_SEARCH_INDEX_NAME="azureblob-index"
+AZURE_SEARCH_API_KEY="xxxxxxxxxxxxxx"
+-------------------------------------------------
+
+/project/requirements.txt 파일은 아래와 같이 준비해놓았습니다. 
+-------------------------------------------------
+annotated-types==0.6.0
+anyio==3.7.1
+blinker==1.7.0
+certifi==2023.7.22
+click==8.1.7
+distro==1.8.0
+Flask==3.0.0
+h11==0.14.0
+httpcore==1.0.1
+httpx==0.25.1
+idna==3.4
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+openai==1.2.2
+pydantic==2.4.2
+pydantic_core==2.10.1
+python-dotenv==1.0.0
+sniffio==1.3.0
+tqdm==4.66.1
+typing_extensions==4.8.0
+Werkzeug==3.0.1
+-------------------------------------------------
+
+여기서 /project/.env 파일 내용과 /project/requirements.txt 파일 내용은 가급적이면 바꾸지 않는게 좋고,
+각 라이브러리/프레임워크 버전별 의존성 문제가 있을 경우에만, 버전명을 변경해주세요.
+
+참고로, /project/.env 파일과 /project/requirements.txt 파일에서, 필요하면 라이브러리 또는 프레임워크를 추가하는 것은 괜찮습니다.
+(단, 위에 이미 언급된 라이브러리/프레임워크 버전과 의존성 문제에서 충돌을 일으키지 않아야 함)
+
+
+azure_openai
+
+analyze_stock_data
+search_azure_ai
+
+get_finviz_data
+get_naver_finance_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
