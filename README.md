@@ -40,3 +40,10 @@ AZURE_SEARCH_API_KEY="your-azure-ai-search-api-key"
 ### Implement app.py ###
 python3 app.py
 
+```
+
+## 🖥️ 원격 클라이언트에서 서버 접속
+
+```bash
+http://your-server-domain:5000
+```
