@@ -37,7 +37,7 @@ AZURE_SEARCH_INDEX_NAME="your-azure-ai-search-index"
 AZURE_SEARCH_API_KEY="your-azure-ai-search-api-key"
 --------------------------------------------------------------
 
-### Implement app.py ###
+### app.py 파일 실행 ###
 python3 app.py
 
 ```
