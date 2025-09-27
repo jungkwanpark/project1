@@ -1,26 +1,27 @@
-LLM 및 RAG 기반 미국 주식 분석 서비스 
+# 📊 LLM 및 RAG 기반 미국 주식 분석 서비스
 
-서버 환경 세팅 (Ubuntu 22.04)
+## 🖥️ 서버 환경 세팅 (Ubuntu 22.04)
 
-### Apt update -> Install python3 packages ###
+```bash
+### Package 업데이트 및 Python 설치 ###
 sudo apt update && sudo apt install python3 && sudo apt install python3-pip
 python3 --version
 
-### Install git ###
+### Git 설치 ###
 sudo apt install git
 git --version
 
-### Git clone ###
+### Git clone 실행 ###
 git clone https://github.com/jungkwanpark/project1.git
 
-### Change directory ###
+### 디렉토리 이동 ###
 cd project1
 ls -la
 
-### Install dependencies ###
+### 의존성 설치 ###
 pip3 install -r requirements.txt
 
-### Create environment (.env) file as below example ###
+### 환경변수 파일 (.env) 생성 (아래 예시 참조) ###
 Example : 
 --------------------------------------------------------------
 PORT=5000
@@ -38,10 +39,4 @@ AZURE_SEARCH_API_KEY="your-azure-ai-search-api-key"
 
 ### Implement app.py ###
 python3 app.py
-
-
-### From your local browser, access to your server as below ###
-http://your-server-domain:5000
-
-
 
